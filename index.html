@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PUNO Vintage Series 2.0 | Manual</title>
+  <style>
+    :root {
+      color-scheme: light;
+      background: #f7f5ef;
+      color: #252822;
+      font: 100%/1.65 "Instrument Sans", system-ui, sans-serif;
+    }
+    body {
+      max-width: 64rem;
+      margin: 0 auto;
+      padding: 0 clamp(1rem, 5vw, 4rem);
+    }
+    header {
+      padding: clamp(2rem, 7vw, 5rem) 0 1.75rem;
+      border-bottom: 2px solid #344736;
+    }
+    .brand-logo {
+      display: block;
+      max-width: 100%;
+      height: auto;
+      margin-bottom: .75rem;
+    }
+    header p { margin: 0 0 .65rem; color: #425343; }
+    h1, h2 { line-height: 1.15; }
+    h1 {
+      margin: 0;
+      font: 700 clamp(2rem, 6vw, 4rem)/1.1 "Instrument Sans", system-ui, sans-serif;
+      letter-spacing: -.045em;
+    }
+    nav {
+      margin: 2rem 0;
+      padding: clamp(1rem, 4vw, 2rem);
+      background: #eaece3;
+      border-radius: .5rem;
+    }
+    nav h2 { margin-top: 0; }
+    nav ul {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: .6rem 1rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    a { color: #265135; text-underline-offset: .18em; }
+    a:hover { color: #793c22; }
+    a:focus-visible { outline: 2px solid #793c22; outline-offset: 4px; }
+    main section {
+      padding: 1.4rem 0;
+      border-top: 1px solid #c5c9bc;
+      scroll-margin-top: 1rem;
+    }
+    main h2 { margin: 0 0 .8rem; font-size: 1.4rem; }
+    main section:target h2 { color: #793c22; }
+    main p, main ul { max-width: 72ch; margin: .65rem 0 0; }
+    main ul { padding-inline-start: 1.4rem; }
+    main li + li { margin-top: .5rem; }
+    .module-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: start;
+      gap: 1rem clamp(1rem, 4vw, 3rem);
+    }
+    .module-layout p:first-child { margin-top: 0; }
+    .module-panel {
+      display: block;
+      max-width: min(100%, 38vw);
+      height: auto;
+      justify-self: end;
+    }
+    footer { padding: 1.25rem 0 3rem; border-top: 1px solid #c5c9bc; }
+    @media (max-width: 48rem) {
+      nav ul { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .module-layout { grid-template-columns: minmax(0, 1fr); }
+      .module-panel { max-width: 100%; justify-self: start; }
+    }
+    @media (max-width: 30rem) {
+      nav ul { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img class="brand-logo" src="assets/PUNO-Signal-Primary.svg"
+         width="224" height="90" alt="PUNO Electronic Instruments">
+    <p>Manual for VCV Rack 2</p>
+    <h1>PUNO Vintage Series 2.0</h1>
+  </header>
+  <nav aria-labelledby="indice">
+    <h2 id="indice">Module index</h2>
+    <ul>
+        <li><a href="#origin-vco">ORIGIN VCO</a></li>
+        <li><a href="#form-vcf">FORM VCF</a></li>
+        <li><a href="#dyn-vca">DYN VCA</a></li>
+        <li><a href="#contour-adsr">CONTOUR ADSR</a></li>
+        <li><a href="#cycle-lfo">CYCLE LFO</a></li>
+        <li><a href="#fuse-ring">FUSE RING</a></li>
+        <li><a href="#hiss-noise">HISS NOISE</a></li>
+        <li><a href="#drift-sh">DRIFT S&amp;H</a></li>
+        <li><a href="#blend-mixer">BLEND MIXER</a></li>
+        <li><a href="#glide-porta">GLIDE PORTA</a></li>
+        <li><a href="#pass-gate">PASS GATE</a></li>
+        <li><a href="#branch-multiple">BRANCH MULTIPLE</a></li>
+        <li><a href="#swirl-phaser">SWIRL PHASER</a></li>
+        <li><a href="#echo-delay">ECHO DELAY</a></li>
+        <li><a href="#shift-gate-delay">SHIFT GATE DELAY</a></li>
+        <li><a href="#stride-sequencer">STRIDE SEQUENCER</a></li>
+        <li><a href="#tone-eq">TONE EQ</a></li>
+        <li><a href="#main-mixer-output">MAIN MIXER OUTPUT</a></li>
+    </ul>
+  </nav>
+  <main>
+    <section id="origin-vco">
+      <h2>ORIGIN VCO</h2>
+      <div class="module-layout">
+        <div>
+          <p>7 HP. VCO from the PUNO VINTAGE series.</p>
+          <p>Available waveforms are triangle, sawtooth and pulse. Coarse selects the octave and Fine pitch adjusts fine tuning. Pulse width sets the width of the pulse. The PWM input modulates that width and affects the pulse waveform. Both Pitch modulation inputs contribute to the pitch, each with its own amount control.</p>
+        </div>
+        <img class="module-panel" src="assets/screenshots/origin-vco.png"
+             width="142" height="415" alt="ORIGIN VCO module screenshot">
+      </div>
+    </section>
+    <section id="form-vcf">
+      <h2>FORM VCF</h2>
+      <div class="module-layout">
+        <div>
+          <p>7 HP. VCF from the PUNO VINTAGE series.</p>
+          <p>The three audio inputs are summed after their individual level controls and feed a single four-pole resonant low-pass filter. The three CV inputs modulate the cutoff together, each with adjustable amount and polarity. Cutoff and Resonance adjust the cutoff frequency and resonance. The main output carries the low-pass signal. The High-pass output applies additional high-pass filtering to the already filtered signal. The selector offers Off, 1 kHz, 2 kHz and 5 kHz. In the Off position, this output carries the low-pass signal.</p>
+        </div>
+        <img class="module-panel" src="assets/screenshots/form-vcf.png"
+             width="142" height="429" alt="FORM VCF module screenshot">
+      </div>
+    </section>
+    <section id="dyn-vca">
+      <h2>DYN VCA</h2>
+      <div class="module-layout">
+        <div>
+          <p>7 HP. VCA with a three-input audio mixer, three CV inputs for the shared gain and a choice of Linear or Exponential response.</p>
+          <p>The three audio inputs are summed after their individual level controls and pass through a single amplification stage. The three CV inputs, each with adjustable amount and polarity, contribute to the shared gain along with Initial gain. Response selects Linear or Exponential. The setting labeled Exponential uses a cubic curve in place of an exact exponential curve. The main output is active. The legacy output is inactive and held at 0 V.</p>
+        </div>
+        <img class="module-panel" src="assets/screenshots/dyn-vca.png"
+             width="142" height="440" alt="DYN VCA module screenshot">
+      </div>
+    </section>
+    <section id="contour-adsr">
+      <h2>CONTOUR ADSR</h2>
+      <div class="module-layout">
+        <div>
+          <p>7 HP. ADSR envelope with a manual gate and positive and inverted outputs.</p>
+          <p>Attack, Decay, Sustain and Release control the four stages of the envelope. The gate is active whenever the external input reaches at least 1 V or the manual button is pressed, including when both conditions are met. A retrigger edge restarts the attack from the current level only while the gate is active. The outputs provide the positive envelope from 0 to 10 V and an inverted copy from 0 to −10 V.</p>
+        </div>
+        <img class="module-panel" src="assets/screenshots/contour-adsr.png"
+             width="142" height="430" alt="CONTOUR ADSR module screenshot">
+      </div>
+    </section>
+    <section id="cycle-lfo">
+      <h2>CYCLE LFO</h2>
+      <div class="module-layout">
+        <div>
+          <p>7 HP. LFO with four waveforms, three frequency ranges and fade-in.</p>
+          <p>Frequency adjusts the rate within the selected range. Low covers 0.05–1.8 Hz, Mid covers 0.2–9 Hz and High covers 0.5–30 Hz. Frequency CV follows 1 V/octave and stays within the selected range. Waveform selects sine, triangle, sawtooth or pulse. Output level selects full level (up to ±5 V) or 1/10 level (up to ±0.5 V). The two outputs have opposite polarities. An edge at the Trigger input resets the phase and fade-in timer to zero. Fade-in gradually increases the amplitude to the selected level over 0–10 s. At 0 s the selected level is reached immediately.</p>
+        </div>
+        <img class="module-panel" src="assets/screenshots/cycle-lfo.png"
+             width="142" height="433" alt="CYCLE LFO module screenshot">
+      </div>
+    </section>
+    <section id="fuse-ring">
+      <h2>FUSE RING</h2>
+      <div class="module-layout">
+        <div>
+          <p>7 HP. Bipolar ring modulator with two unnormalled inputs and one output.</p>
+        </div>
+        <img class="module-panel" src="assets/screenshots/fuse-ring.png"
+             width="142" height="426" alt="FUSE RING module screenshot">
+      </div>
+    </section>
+    <section id="hiss-noise">
+      <h2>HISS NOISE</h2>
+      <div class="module-layout">
+        <div>
+          <p>7 HP. White and pink noise, with two identical outputs per source.</p>
+        </div>
+        <img class="module-panel" src="assets/screenshots/hiss-noise.png"
+             width="142" height="432" alt="HISS NOISE module screenshot">
+      </div>
+    </section>
+    <section id="drift-sh">
+      <h2>DRIFT S&amp;H</h2>
+      <div class="module-layout">
+        <div>
+          <p>7 HP. Sample &amp; hold with internal white noise, external clock priority and lag.</p>
+        </div>
+        <img class="module-panel" src="assets/screenshots/drift-sh.png"
+             width="142" height="433" alt="DRIFT S&amp;H module screenshot">
+      </div>
+    </section>
+    <section id="blend-mixer">
+      <h2>BLEND MIXER</h2>
+      <div class="module-layout">
+        <div>
+          <p>7 HP. Four-input mixer with two copies each of the normal and inverted outputs. Inputs 3 and 4 are normalled to +10 V and −10 V respectively.</p>
+        </div>
+        <img class="module-panel" src="assets/screenshots/blend-mixer.png"
+             width="142" height="420" alt="BLEND MIXER module screenshot">
+      </div>
+    </section>
+    <section id="glide-porta">
+      <h2>GLIDE PORTA</h2>
+      <div class="module-layout">
+        <div>
+          <p>7 HP. Single-channel exponential portamento with a TIME slider and a variable-brightness LED.</p>
+        </div>
+        <img class="module-panel" src="assets/screenshots/glide-porta.png"
+             width="142" height="422" alt="GLIDE PORTA module screenshot">
+      </div>
+    </section>
+    <section id="pass-gate">
+      <h2>PASS GATE</h2>
+      <div class="module-layout">
+        <div>
+          <p>7 HP. Two independent signal gates with positive CV, negative CV and OPEN LEDs.</p>
+        </div>
+        <img class="module-panel" src="assets/screenshots/pass-gate.png"
+             width="142" height="427" alt="PASS GATE module screenshot">
+      </div>
+    </section>
+    <section id="branch-multiple">
+      <h2>BRANCH MULTIPLE</h2>
+      <div class="module-layout">
+        <div>
+          <p>7 HP. Six independent multiples, each with one input and two identical outputs.</p>
+        </div>
+        <img class="module-panel" src="assets/screenshots/branch-multiple.png"
+             width="142" height="424" alt="BRANCH MULTIPLE module screenshot">
+      </div>
+    </section>
+    <section id="swirl-phaser">
+      <h2>SWIRL PHASER</h2>
+      <div class="module-layout">
+        <div>
+          <p>7 HP. Six-stage phaser with an internal triangle LFO and an external CV input.</p>
+        </div>
+        <img class="module-panel" src="assets/screenshots/swirl-phaser.png"
+             width="142" height="430" alt="SWIRL PHASER module screenshot">
+      </div>
+    </section>
+    <section id="echo-delay">
+      <h2>ECHO DELAY</h2>
+      <div class="module-layout">
+        <div>
+          <p>7 HP. 1–7 ms audio delay with a triangle LFO, feedback and an effect bypass.</p>
+        </div>
+        <img class="module-panel" src="assets/screenshots/echo-delay.png"
+             width="142" height="421" alt="ECHO DELAY module screenshot">
+      </div>
+    </section>
+    <section id="shift-gate-delay">
+      <h2>SHIFT GATE DELAY</h2>
+      <div class="module-layout">
+        <div>
+          <p>7 HP. Gate delay with adjustable threshold, delay and duration, and a 10 V output.</p>
+        </div>
+        <img class="module-panel" src="assets/screenshots/shift-gate-delay.png"
+             width="142" height="421" alt="SHIFT GATE DELAY module screenshot">
+      </div>
+    </section>
+    <section id="stride-sequencer">
+      <h2>STRIDE SEQUENCER</h2>
+      <div class="module-layout">
+        <div>
+          <p>21 HP. Two-channel, eight-step sequencer with parallel and series configurations and a horizontal panel.</p>
+          <p>Repeat advances on the internal clock and loops at the end of the sequence. Step advances on edges at the external trigger input only while the sequencer is running. Single uses the internal clock and stops at the end of the sequence. Tempo sets the internal clock rate, which can be modulated at the Tempo CV input. Start/Stop stops a running sequence and starts a stopped sequence from the first step. Changing Repeat/Step/Single or Parallel/Series returns to the first step and resets the clock and end-of-sequence trigger while preserving the running or stopped state. Step values can be adjusted while the sequencer runs. Channel configuration, DELAY and TRIG OUT are described below.</p>
+        </div>
+        <img class="module-panel" src="assets/screenshots/stride-sequencer.png"
+             width="425" height="498" alt="STRIDE SEQUENCER module screenshot">
+      </div>
+    </section>
+    <section id="tone-eq">
+      <h2>TONE EQ</h2>
+      <div class="module-layout">
+        <div>
+          <p>14 HP. Four-band parametric EQ with two identical outputs, bypass and SIGNAL/CLIP indicators.</p>
+        </div>
+        <img class="module-panel" src="assets/screenshots/tone-eq.png"
+             width="283" height="481" alt="TONE EQ module screenshot">
+      </div>
+    </section>
+    <section id="main-mixer-output">
+      <h2>MAIN MIXER OUTPUT</h2>
+      <div class="module-layout">
+        <div>
+          <p>14 HP. Four-channel stereo mixer with pan and fader controls, a reference oscillator, independent master and phones levels, and unnormalled inputs.</p>
+        </div>
+        <img class="module-panel" src="assets/screenshots/main-mixer-output.png"
+             width="283" height="479" alt="MAIN MIXER OUTPUT module screenshot">
+      </div>
+    </section>
+    <section id="collegamenti-e-comportamento">
+      <h2>Connections and behavior</h2>
+      <ul>
+        <li><strong>HISS</strong>. The two WHITE outputs are identical to each other, as are the two PINK outputs.</li>
+        <li><strong>DRIFT</strong>. When SIGNAL IN is unpatched, the module uses white noise. An external clock at CLOCK IN takes priority for sampling. CLOCK OUT always carries the internal clock. RATE ranges from 0.1 to 50 Hz and LAG ranges from 0 to 5 s.</li>
+        <li><strong>FUSE</strong>. The product X×Y/5 is limited to ±10 V. The inputs are unnormalled.</li>
+        <li><strong>BLEND</strong>. IN 3 and IN 4 are normalled to +10 V and −10 V respectively. There are two copies of the sum and two copies of the inverted sum, with a ±10 V limit.</li>
+        <li><strong>GLIDE</strong>. The exponential time constant ranges from 0.01 to 3 s. LED brightness is proportional to TIME.</li>
+        <li><strong>PASS</strong>. With only CV + patched, the gate opens above 3 V. With only CV − patched, it opens below 1.5 V. With both patched, it opens when CV + &gt; 3 V and CV − ≥ 1.5 V. With neither patched, the gate stays closed.</li>
+        <li><strong>BRANCH</strong>. The six monophonic sections are independent and have no normalled connections between them.</li>
+        <li><strong>SWIRL and ECHO</strong>. The internal triangle LFO ranges from 0.02 to 10 Hz and has opposite ±5 V outputs. External CV replaces the modulation source.</li>
+        <li><strong>ECHO</strong>. The short delay spans 1–7 ms, with feedback from 0 to 0.85 and a fixed 50/50 mix. The delay is too short to produce widely spaced repeats.</li>
+        <li><strong>SHIFT</strong>. Delay and duration range from 0.3 ms to 6 s, the threshold ranges from 0.3 to 5 V and the pulse is 10 V. The module ignores new edges during the delay or pulse.</li>
+        <li><strong>STRIDE</strong>. The two channels each have eight values from 0 to 5 V. PARALLEL runs for 1–8 steps. SERIES runs for 8 + STEPS on CV 1. DELAY smooths only CV 1. TRIG OUT signals the end of the sequence.</li>
+        <li><strong>TONE</strong>. The four parametric bands have ±12 dB of gain adjustment and a Q range of 0.9–9. The frequency ranges are 20–200 / 100–1000 / 500–5000 / 2000–20000 Hz. The two outputs are identical and bypass transitions gradually.</li>
+        <li><strong>MAIN</strong>. The mixer has four unnormalled inputs, equal-power pan and faders with LEDs. The oscillator settings are OFF/220/440/880 Hz. MASTER and PHONES are independent. When MASTER R is unpatched, MASTER L/MONO provides 0.5 × (L + R), the average (attenuated sum) of the two master channels. PHONES carries L and R on the first two channels of the Rack cable.</li>
+      </ul>
+      <p>These notes describe the behavior of the current code. The audio and functionality are unchanged.</p>
+    </section>
+  </main>
+  <footer>
+    <a href="#indice">Back to module index</a>
+  </footer>
+</body>
+</html>
