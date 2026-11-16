@@ -3,7 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>PUNO Vintage Series 2.0 | Manual</title>
+  <!-- On publication, replace Development Draft with Version X.Y.Z here and in the visible h1. -->
+  <title>PUNO Vintage Series — User Manual | Development Draft</title>
   <style>
     :root {
       color-scheme: light;
@@ -90,8 +91,17 @@
     <img class="brand-logo" src="assets/PUNO-Signal-Primary.svg"
          width="224" height="90" alt="PUNO Electronic Instruments">
     <p>Manual for VCV Rack 2</p>
-    <h1>PUNO Vintage Series 2.0</h1>
+    <h1>PUNO Vintage Series — User Manual | Development Draft</h1>
   </header>
+  <section aria-labelledby="series-introduction">
+    <h2 id="series-introduction">The Essence of Modular Synthesis</h2>
+    <p>Inspired by the spirit of modular synthesizers from the 1970s, the PUNO Vintage Series celebrates a time when electronic music was shaped through simple circuits, hands-on experimentation, and the creative possibilities of connecting one function to another.</p>
+    <p>The series is built around a straightforward idea: <strong>give musicians the essential tools and let creativity do the rest.</strong></p>
+    <p>Rather than adding complexity for its own sake, PUNO Vintage focuses on fundamental building blocks of modular synthesis. Oscillators, filters, amplifiers, modulation sources, sequencers, and other essential utilities become the starting points for exploring sound, building instruments, and discovering unexpected musical possibilities.</p>
+    <p>This approach embraces the beauty of limitations. A small collection of carefully chosen functions can offer remarkable creative freedom when combined in different ways.</p>
+    <p>PUNO Vintage is not intended to recreate any particular historical instrument. Instead, it draws inspiration from the philosophy of early modular synthesis, bringing its directness, character, and exploratory spirit into the modern environment of VCV Rack.</p>
+    <p><strong>Simple tools. Endless possibilities.</strong></p>
+  </section>
   <nav aria-labelledby="indice">
     <h2 id="indice">Module index</h2>
     <ul>
@@ -113,6 +123,12 @@
         <li><a href="#stride-sequencer">STRIDE SEQUENCER</a></li>
         <li><a href="#tone-eq">TONE EQ</a></li>
         <li><a href="#main-mixer-output">MAIN MIXER OUTPUT</a></li>
+        <li><a href="#pulse-logic">PULSE LOGIC</a></li>
+        <li><a href="#chroma-quant">CHROMA QUANT</a></li>
+        <li><a href="#ratio-div">RATIO DIV</a></li>
+        <li><a href="#route-switch">ROUTE SWITCH</a></li>
+        <li><a href="#kelvor-dist">KELVOR DIST</a></li>
+        <li><a href="#nastro-tape">NASTRO TAPE</a></li>
     </ul>
   </nav>
   <main>
@@ -120,8 +136,12 @@
       <h2>ORIGIN VCO</h2>
       <div class="module-layout">
         <div>
-          <p>7 HP. VCO from the PUNO VINTAGE series.</p>
-          <p>Available waveforms are triangle, sawtooth and pulse. Coarse selects the octave and Fine pitch adjusts fine tuning. Pulse width sets the width of the pulse. The PWM input modulates that width and affects the pulse waveform. Both Pitch modulation inputs contribute to the pitch, each with its own amount control.</p>
+          <h3>Overview</h3>
+          <p>An oscillator turns a steady pitch setting or a changing control voltage into a repeating audio waveform. ORIGIN offers three starting spectra. Triangle has relatively little upper harmonic energy, sawtooth is bright and dense, and pulse changes its harmonic balance as its width changes.</p>
+          <h3>Controls and connections</h3>
+          <p>The upper selector shifts the oscillator by octaves from <strong>32′</strong> through <strong>2′</strong>, and <strong>PITCH</strong> tunes within that register. <strong>WAVE</strong> selects triangle, sawtooth, or pulse at <strong>OUT</strong>. The two pitch modulation inputs, <strong>CV 1</strong> and <strong>CV 2</strong>, are summed after their individual amount controls. With an amount knob fully clockwise, its input follows the 1 V/oct standard. An increase of 1 V raises the pitch by one octave. Lower settings reduce the pitch change per volt. Use one input at full amount for a note sequence and the other at a low amount for vibrato. <strong>PW</strong> sets the resting pulse width, and <strong>PWM IN</strong> moves the width around that setting. Pulse-width modulation applies to the pulse waveform.</p>
+          <h3>Try it</h3>
+          <p>Select pulse and set <strong>PW</strong> near the middle. Patch <strong>CYCLE LFO</strong> on <strong>LOW</strong> with <strong>LEVEL</strong> at <strong>1/10</strong> into <strong>PWM IN</strong>. Send <strong>OUT</strong> through <strong>FORM VCF</strong> and listen for movement in the harmonics while the oscillator pitch stays steady.</p>
         </div>
         <img class="module-panel" src="assets/screenshots/origin-vco.png"
              width="142" height="415" alt="ORIGIN VCO module screenshot">
@@ -131,8 +151,15 @@
       <h2>FORM VCF</h2>
       <div class="module-layout">
         <div>
-          <p>7 HP. VCF from the PUNO VINTAGE series.</p>
-          <p>The three audio inputs are summed after their individual level controls and feed a single four-pole resonant low-pass filter. The three CV inputs modulate the cutoff together, each with adjustable amount and polarity. Cutoff and Resonance adjust the cutoff frequency and resonance. The main output carries the low-pass signal. The High-pass output applies additional high-pass filtering to the already filtered signal. The selector offers Off, 1 kHz, 2 kHz and 5 kHz. In the Off position, this output carries the low-pass signal.</p>
+          <h3>Overview</h3>
+          <p>FORM is a resonant four-pole low-pass filter with an input mixer. A low-pass filter progressively attenuates frequencies above its cutoff. Resonance emphasizes the area around that cutoff, so a sweep can bring out successive harmonics before they fade away.</p>
+          <h3>Controls and connections</h3>
+          <p>Set the balance of up to three sources with the knobs above <strong>IN 1–3</strong>. They enter a shared filter, so <strong>CUTOFF</strong> and <strong>RESONANCE</strong> act on the whole mix. Use <strong>LPF</strong> for the main low-pass signal. The <strong>HPF</strong> output adds high-pass filtering to that same signal at <strong>1K</strong>, <strong>2K</strong>, or <strong>5K</strong>. With a suitable cutoff setting, the two stages can leave a narrower band of the source audible. At <strong>OFF</strong>, <strong>HPF</strong> carries the same signal as <strong>LPF</strong>. That selector affects only <strong>HPF</strong>.</p>
+          <p>Each <strong>CV 1–3</strong> knob determines how much its input moves the cutoff and in which direction. The center gives zero modulation. The three contributions add, so a short envelope and a slow LFO can shape the same sweep on different time scales.</p>
+          <h3>Try it</h3>
+          <p>Patch <strong>ORIGIN VCO</strong> on sawtooth into <strong>IN 1</strong> and raise its level. Take <strong>LPF</strong> to your listening chain, then start with a low <strong>CUTOFF</strong> and a little <strong>RESONANCE</strong>. Patch <strong>CONTOUR ADSR</strong> into <strong>CV 1</strong> and increase the amount clockwise. Shorten <strong>DECAY</strong> until the bright opening settles into a darker held tone.</p>
+          <h3>Important notes</h3>
+          <p>The <strong>CUTOFF</strong> tooltip shows the nominal frequency set by the knob and the effective frequency after CV and the sample-rate limit. The two values can differ even with the CV inputs unpatched.</p>
         </div>
         <img class="module-panel" src="assets/screenshots/form-vcf.png"
              width="142" height="429" alt="FORM VCF module screenshot">
@@ -142,8 +169,13 @@
       <h2>DYN VCA</h2>
       <div class="module-layout">
         <div>
-          <p>7 HP. VCA with a three-input audio mixer, three CV inputs for the shared gain and a choice of Linear or Exponential response.</p>
-          <p>The three audio inputs are summed after their individual level controls and pass through a single amplification stage. The three CV inputs, each with adjustable amount and polarity, contribute to the shared gain along with Initial gain. Response selects Linear or Exponential. The setting labeled Exponential uses a cubic curve in place of an exact exponential curve. The main output is active. The legacy output is inactive and held at 0 V.</p>
+          <h3>Overview</h3>
+          <p>A voltage-controlled amplifier turns a control voltage into changes in level. DYN combines three audio sources before applying a single gain stage, so a blend of oscillators and noise can follow one amplitude envelope.</p>
+          <h3>Controls and connections</h3>
+          <p>Set the source balance with the knobs above <strong>IN 1–3</strong> and take the controlled mix from <strong>OUT</strong>. <strong>GAIN</strong> sets how open the VCA is before modulation. The <strong>CV 1–3</strong> amounts are bipolar, with zero contribution at the center. Positive and negative contributions add to <strong>GAIN</strong>, and the combined control range runs from silence to full gain. A raised <strong>GAIN</strong> lets a signal through between notes or leaves room for negative CV to close the VCA.</p>
+          <p><strong>RESPONSE</strong> changes how control level becomes gain. <strong>LIN</strong> tracks the control level directly. <strong>EXP</strong> applies a cubic curve, giving lower gain at intermediate control levels and making low-level changes more gradual.</p>
+          <h3>Try it</h3>
+          <p>Mix a sawtooth from <strong>ORIGIN VCO</strong> with a little <strong>HISS NOISE</strong> at <strong>IN 1</strong> and <strong>IN 2</strong>. With <strong>GAIN</strong> down, open <strong>CV 1</strong> clockwise and patch <strong>CONTOUR ADSR OUT +</strong> into it. Use the same envelope to compare <strong>LIN</strong> and <strong>EXP</strong> at <strong>OUT</strong>, listening to how the noise and oscillator emerge together.</p>
         </div>
         <img class="module-panel" src="assets/screenshots/dyn-vca.png"
              width="142" height="440" alt="DYN VCA module screenshot">
@@ -153,8 +185,14 @@
       <h2>CONTOUR ADSR</h2>
       <div class="module-layout">
         <div>
-          <p>7 HP. ADSR envelope with a manual gate and positive and inverted outputs.</p>
-          <p>Attack, Decay, Sustain and Release control the four stages of the envelope. The gate is active whenever the external input reaches at least 1 V or the manual button is pressed, including when both conditions are met. A retrigger edge restarts the attack from the current level only while the gate is active. The outputs provide the positive envelope from 0 to 10 V and an inverted copy from 0 to −10 V.</p>
+          <h3>Overview</h3>
+          <p>An ADSR envelope converts a gate into a shaped control voltage. Attack and decay shape the start of the note, sustain sets the level while the note is held, and release controls its tail. The same envelope can articulate amplitude, filter cutoff, or both.</p>
+          <h3>Controls and connections</h3>
+          <p>Patch a held note signal into <strong>GATE</strong>, or press <strong>MANUAL GATE</strong>. Either keeps the envelope gated. <strong>ATTACK</strong> sets the rise, <strong>DECAY</strong> sets the fall to the <strong>SUSTAIN</strong> level, and <strong>RELEASE</strong> controls the return to zero after both gate sources are off. <strong>OUT +</strong> provides a positive envelope up to +10 V. <strong>OUT −</strong> provides its polarity-inverted copy. Use the inverse where a destination should fall as the positive envelope rises.</p>
+          <h3>Try it</h3>
+          <p>Send <strong>STRIDE SEQUENCER GATE</strong> to <strong>GATE</strong> and <strong>OUT +</strong> to <strong>DYN VCA CV 1</strong>. Turn the VCA amount clockwise and keep its <strong>GAIN</strong> low. A fast attack, medium sustain, and short release make discrete notes. Lengthen the release until adjacent notes begin to overlap.</p>
+          <h3>Important notes</h3>
+          <p>A rising edge at <strong>RETRIG</strong> restarts the attack from the current envelope level while <strong>GATE</strong> or <strong>MANUAL GATE</strong> is active.</p>
         </div>
         <img class="module-panel" src="assets/screenshots/contour-adsr.png"
              width="142" height="430" alt="CONTOUR ADSR module screenshot">
@@ -164,8 +202,15 @@
       <h2>CYCLE LFO</h2>
       <div class="module-layout">
         <div>
-          <p>7 HP. LFO with four waveforms, three frequency ranges and fade-in.</p>
-          <p>Frequency adjusts the rate within the selected range. Low covers 0.05–1.8 Hz, Mid covers 0.2–9 Hz and High covers 0.5–30 Hz. Frequency CV follows 1 V/octave and stays within the selected range. Waveform selects sine, triangle, sawtooth or pulse. Output level selects full level (up to ±5 V) or 1/10 level (up to ±0.5 V). The two outputs have opposite polarities. An edge at the Trigger input resets the phase and fade-in timer to zero. Fade-in gradually increases the amplitude to the selected level over 0–10 s. At 0 s the selected level is reached immediately.</p>
+          <h3>Overview</h3>
+          <p>A low-frequency oscillator produces a repeating control voltage. Sine and triangle waves make continuous sweeps, a saw gives a ramp with an abrupt return, and a pulse switches between two levels. Two opposite outputs let one cycle drive related changes in different directions.</p>
+          <h3>Controls and connections</h3>
+          <p>Select <strong>LOW</strong> (0.05–1.8 Hz), <strong>MID</strong> (0.2–9 Hz), or <strong>HIGH</strong> (0.5–30 Hz) with <strong>RANGE</strong>, then tune within that range with <strong>FREQUENCY</strong>. <strong>FREQ CV</strong> doubles the rate for each added volt and halves it for each volt removed, within the range limits. Select the shape with <strong>WAVEFORM</strong>. <strong>LEVEL</strong> selects full amplitude or <strong>1/10</strong> for smaller changes at the destination. <strong>OUT +</strong> and <strong>OUT −</strong> carry opposite versions of the same cycle.</p>
+          <p>A rising edge at <strong>TRIG</strong> restarts the waveform and its fade timer. <strong>FADE-IN</strong> sets how long the output takes to reach the selected amplitude.</p>
+          <h3>Try it</h3>
+          <p>Choose <strong>LOW</strong> and triangle. Patch <strong>OUT +</strong> to one <strong>FORM VCF</strong> cutoff CV input and <strong>OUT −</strong> to a second filter in another voice. Use positive modulation amounts on both filters. Send a phrase-start gate to <strong>TRIG</strong> and raise <strong>FADE-IN</strong> so the two sweeps build gradually in opposite directions.</p>
+          <h3>Important notes</h3>
+          <p>Hover over <strong>FREQUENCY</strong> to read the effective rate in Hz, including the effect of <strong>FREQ CV</strong> and the selected range limits.</p>
         </div>
         <img class="module-panel" src="assets/screenshots/cycle-lfo.png"
              width="142" height="433" alt="CYCLE LFO module screenshot">
@@ -175,7 +220,12 @@
       <h2>FUSE RING</h2>
       <div class="module-layout">
         <div>
-          <p>7 HP. Bipolar ring modulator with two unnormalled inputs and one output.</p>
+          <h3>Overview</h3>
+          <p>A ring modulator multiplies two signals sample by sample. In bipolar multiplication, like polarities give a positive result and opposite polarities give a negative result. With two pure tones, the multiplication generates a component at the sum of their frequencies and another at the absolute difference. These sidebands can sound bell-like or metallic when the two tones are tuned to intervals that do not line up with a shared harmonic series.</p>
+          <h3>Controls and connections</h3>
+          <p>Patch an audio or control signal into <strong>X IN</strong> and another into <strong>Y IN</strong>. Either input can play either role because the product is symmetrical. With one audio signal and a slow bipolar signal, the slow signal controls the audio level and reverses its polarity over part of the cycle. <strong>OUT</strong> is X × Y / 5, limited to ±10 V. Both inputs need a signal for a nonzero output.</p>
+          <h3>Try it</h3>
+          <p>Patch two triangle waves from <strong>ORIGIN VCO</strong> into <strong>X IN</strong> and <strong>Y IN</strong>. Start at matching pitches, take <strong>OUT</strong> to your listening chain, and slowly retune the second oscillator with <strong>PITCH</strong>. Listen for a slow difference tone or beating near unison and brighter sidebands as you open up the interval. The extra harmonics in a triangle wave can generate more sidebands than a pair of pure sine tones.</p>
         </div>
         <img class="module-panel" src="assets/screenshots/fuse-ring.png"
              width="142" height="426" alt="FUSE RING module screenshot">
@@ -185,7 +235,12 @@
       <h2>HISS NOISE</h2>
       <div class="module-layout">
         <div>
-          <p>7 HP. White and pink noise, with two identical outputs per source.</p>
+          <h3>Overview</h3>
+          <p>White and pink noise distribute energy differently across the spectrum. White noise has roughly equal power in equal-width frequency bands. Pink noise has roughly equal power per octave, giving its upper octaves less weight relative to white noise. Both can supply broadband material for percussion or a layer beneath pitched sounds.</p>
+          <h3>Controls and connections</h3>
+          <p><strong>WHITE 1</strong> and <strong>WHITE 2</strong> are duplicate taps of the same white-noise source. <strong>PINK 1</strong> and <strong>PINK 2</strong> duplicate the pink-noise source. Patch both jacks in a pair when two processing paths need the same signal.</p>
+          <h3>Try it</h3>
+          <p>Send <strong>WHITE 1</strong> to <strong>DYN VCA IN 1</strong>, and shape it with a short <strong>CONTOUR ADSR</strong> envelope. Patch the VCA output into <strong>FORM VCF</strong> and compare its <strong>LPF</strong> and <strong>HPF</strong> outputs as you tune the filter. Swap to <strong>PINK 1</strong> to audition the same patch with less high-frequency emphasis.</p>
         </div>
         <img class="module-panel" src="assets/screenshots/hiss-noise.png"
              width="142" height="432" alt="HISS NOISE module screenshot">
@@ -195,7 +250,14 @@
       <h2>DRIFT S&amp;H</h2>
       <div class="module-layout">
         <div>
-          <p>7 HP. Sample &amp; hold with internal white noise, external clock priority and lag.</p>
+          <h3>Overview</h3>
+          <p>A sample-and-hold grabs the instantaneous value of a signal on a clock edge and holds it until the next sample. Sampling noise makes random steps. Sampling a repeating waveform can produce a repeating or slowly drifting pattern, depending on how its rate relates to the clock.</p>
+          <h3>Controls and connections</h3>
+          <p>Feed the source into <strong>SIGNAL IN</strong> and take held values from <strong>S&amp;H OUT</strong>. An unpatched <strong>SIGNAL IN</strong> selects the internal white noise. <strong>RATE</strong> sets the internal sampling clock, or patch <strong>CLOCK IN</strong> to sample in time with another module. <strong>LAG</strong> softens transitions between held values, turning sharp steps into rounded movement. <strong>RATE</strong> spans 0.1–50 Hz and <strong>LAG</strong> spans 0–5 seconds.</p>
+          <h3>Try it</h3>
+          <p>Leave <strong>SIGNAL IN</strong> unpatched and feed <strong>STRIDE SEQUENCER GATE</strong> into <strong>CLOCK IN</strong>. Patch <strong>S&amp;H OUT</strong> to <strong>FORM VCF CV 1</strong> at a modest amount. Each step gets its own cutoff. Compare a stepped pattern at minimum <strong>LAG</strong> with the rounded transitions at a higher setting.</p>
+          <h3>Important notes</h3>
+          <p><strong>CLOCK IN</strong> takes over sampling when patched. <strong>CLOCK OUT</strong> always carries the internal clock set by <strong>RATE</strong>.</p>
         </div>
         <img class="module-panel" src="assets/screenshots/drift-sh.png"
              width="142" height="433" alt="DRIFT S&amp;H module screenshot">
@@ -205,7 +267,14 @@
       <h2>BLEND MIXER</h2>
       <div class="module-layout">
         <div>
-          <p>7 HP. Four-input mixer with two copies each of the normal and inverted outputs. Inputs 3 and 4 are normalled to +10 V and −10 V respectively.</p>
+          <h3>Overview</h3>
+          <p>BLEND adds weighted audio or control signals. Its inverted outputs make the same summed signal useful for opposite modulation, and two internally supplied voltages let the mixer add a fixed offset to a moving signal.</p>
+          <h3>Controls and connections</h3>
+          <p>Patch to <strong>IN 1–4</strong> and use <strong>LEVEL 1–4</strong> to scale the contributions before they are added. <strong>OUT 1</strong> and <strong>OUT 2</strong> give duplicate sums, and <strong>INV 1</strong> and <strong>INV 2</strong> give duplicate polarity-inverted sums. Inverting the mix also inverts any fixed offset. The output range is limited to ±10 V.</p>
+          <h3>Try it</h3>
+          <p>Patch <strong>CYCLE LFO OUT +</strong> into <strong>IN 1</strong> and raise <strong>LEVEL 1</strong>. Keep <strong>IN 3</strong> empty and turn up <strong>LEVEL 3</strong> to lift the modulation above its original center. Send <strong>OUT 1</strong> to <strong>FORM VCF CV 1</strong> and listen as the offset raises the center of the sweep.</p>
+          <h3>Important notes</h3>
+          <p>When unpatched, <strong>IN 3</strong> supplies +10 V and <strong>IN 4</strong> supplies −10 V before their level controls. Use their knobs to add an offset, or turn both down to mix only the patched signals.</p>
         </div>
         <img class="module-panel" src="assets/screenshots/blend-mixer.png"
              width="142" height="420" alt="BLEND MIXER module screenshot">
@@ -215,7 +284,12 @@
       <h2>GLIDE PORTA</h2>
       <div class="module-layout">
         <div>
-          <p>7 HP. Single-channel exponential portamento with a TIME slider and a variable-brightness LED.</p>
+          <h3>Overview</h3>
+          <p>GLIDE is an exponential slew processor. When an input jumps to a new value, the output moves toward it quickly at first and then settles more gradually. Applied to pitch CV, this is portamento, the audible slide between notes. Applied to other CV, it is slew limiting. For example, it can make a filter cutoff move gradually between two settings.</p>
+          <h3>Controls and connections</h3>
+          <p>Patch a changing voltage into <strong>IN</strong> and take the result from <strong>OUT</strong>. Raise <strong>TIME</strong> to slow both rising and falling transitions. It sets the exponential time constant from 0.01 to 3 seconds. The LED grows brighter with the <strong>TIME</strong> setting. For notes to reach their target before the next step, choose a setting that suits the sequence speed.</p>
+          <h3>Try it</h3>
+          <p>Send <strong>PUNO CHROMA QUANT CV OUT</strong> into <strong>GLIDE IN</strong>, then patch <strong>GLIDE OUT</strong> into <strong>ORIGIN VCO CV 1</strong> with its amount fully clockwise. Use a sequence with a few wide note jumps. Raise <strong>TIME</strong> until those jumps become audible slides.</p>
         </div>
         <img class="module-panel" src="assets/screenshots/glide-porta.png"
              width="142" height="422" alt="GLIDE PORTA module screenshot">
@@ -225,7 +299,14 @@
       <h2>PASS GATE</h2>
       <div class="module-layout">
         <div>
-          <p>7 HP. Two independent signal gates with positive CV, negative CV and OPEN LEDs.</p>
+          <h3>Overview</h3>
+          <p>PASS is a voltage-controlled signal gate. An open path passes the input signal at its original level, and a closed path outputs zero. The two independent paths can switch clocks, control voltages, or audio according to other events in the patch.</p>
+          <h3>Controls and connections</h3>
+          <p>For <strong>GATE 1</strong> or <strong>GATE 2</strong>, patch the signal to <strong>IN</strong> and take <strong>OUT</strong> from that section. <strong>OPEN</strong> indicates that the path is enabled. With one control cable, use <strong>CV +</strong> to open when its voltage is high or <strong>CV −</strong> to open when its voltage is low. With two cables, the inputs work together as an enable condition. See the thresholds below when combining them.</p>
+          <h3>Try it</h3>
+          <p>Patch a clock to <strong>GATE 1 IN</strong> and a phrase-length gate to its <strong>CV +</strong>. Take <strong>OUT</strong> to a drum trigger input. The clock reaches the drum while the phrase gate is high. Use the second section to enable a different percussion pattern on another phrase.</p>
+          <h3>Important notes</h3>
+          <p>With only <strong>CV +</strong> connected, it opens above 3 V. With only <strong>CV −</strong> connected, it opens below 1.5 V. With both connected, <strong>CV +</strong> must be above 3 V and <strong>CV −</strong> must be at least 1.5 V. With neither connected, the path stays closed.</p>
         </div>
         <img class="module-panel" src="assets/screenshots/pass-gate.png"
              width="142" height="427" alt="PASS GATE module screenshot">
@@ -235,7 +316,12 @@
       <h2>BRANCH MULTIPLE</h2>
       <div class="module-layout">
         <div>
-          <p>7 HP. Six independent multiples, each with one input and two identical outputs.</p>
+          <h3>Overview</h3>
+          <p>BRANCH distributes a signal to two destinations per section. The copies carry the same voltage, so a pitch or timing source can coordinate multiple modules.</p>
+          <h3>Controls and connections</h3>
+          <p>Patch a signal into any <strong>IN 1–6</strong> and take its two copies from <strong>OUT 1</strong> and <strong>OUT 2</strong> in the same section. Each section is independent and mono. Use a fresh section for each signal you want to distribute.</p>
+          <h3>Try it</h3>
+          <p>Split <strong>STRIDE SEQUENCER GATE</strong>. Patch one copy into <strong>CONTOUR ADSR GATE</strong> and the other into <strong>CYCLE LFO TRIG</strong>. The same step can open the voice and restart its modulation cycle.</p>
         </div>
         <img class="module-panel" src="assets/screenshots/branch-multiple.png"
              width="142" height="424" alt="BRANCH MULTIPLE module screenshot">
@@ -245,7 +331,12 @@
       <h2>SWIRL PHASER</h2>
       <div class="module-layout">
         <div>
-          <p>7 HP. Six-stage phaser with an internal triangle LFO and an external CV input.</p>
+          <h3>Overview</h3>
+          <p>A phaser blends the input with a phase-shifted copy. Where the two signals partially cancel, notches appear in the spectrum. SWIRL uses six phase-shift stages and can move those notches with its own triangle LFO or an external voltage.</p>
+          <h3>Controls and connections</h3>
+          <p>Patch audio into <strong>IN</strong> and listen at <strong>OUT</strong> with <strong>EFFECT</strong> on. <strong>FREQ</strong> sets the center of the sweep, <strong>MOD</strong> sets how far it travels, and <strong>RES</strong> feeds part of the processed signal back to make the sweep more pronounced. <strong>LFO RATE</strong> sets the internal sweep speed from 0.02 to 10 Hz. <strong>LFO +</strong> and <strong>LFO −</strong> both swing from −5 V to +5 V with opposite polarity. Patching <strong>CV IN</strong> replaces the internal sweep source for the phaser, while the LFO outputs remain available. <strong>EFFECT</strong> off passes the dry signal.</p>
+          <h3>Try it</h3>
+          <p>Send a sustained <strong>ORIGIN VCO</strong> sawtooth into <strong>IN</strong>. Set a slow <strong>LFO RATE</strong>, raise <strong>MOD</strong>, and turn up <strong>RES</strong> a little. Then feed <strong>CONTOUR ADSR OUT +</strong> to <strong>CV IN</strong> to move the notches with each note instead of a continuous sweep.</p>
         </div>
         <img class="module-panel" src="assets/screenshots/swirl-phaser.png"
              width="142" height="430" alt="SWIRL PHASER module screenshot">
@@ -255,7 +346,12 @@
       <h2>ECHO DELAY</h2>
       <div class="module-layout">
         <div>
-          <p>7 HP. 1–7 ms audio delay with a triangle LFO, feedback and an effect bypass.</p>
+          <h3>Overview</h3>
+          <p>ECHO mixes a 1–7 ms delayed copy with the original. At these short times the two signals reinforce some frequencies and cancel others, creating comb filtering. At 1–7 ms, the delayed sound blends with the original as coloration. Moving the delay time produces flanging, with the repeats too close together to hear as separate rhythmic echoes.</p>
+          <h3>Controls and connections</h3>
+          <p>Patch audio into <strong>IN</strong> and use <strong>TIME</strong> to place the comb peaks and notches. <strong>RES</strong> adds delayed signal back into the delay, strengthening the coloration. <strong>MOD</strong> sets how far modulation can move the delay around <strong>TIME</strong>. <strong>LFO RATE</strong> sets the internal triangle LFO from 0.02 to 10 Hz. <strong>LFO +</strong> and <strong>LFO −</strong> both swing from −5 V to +5 V with opposite polarity. <strong>CV IN</strong> replaces the internal modulation source for the delay. <strong>OUT</strong> is an equal dry/delayed mix with <strong>EFFECT</strong> on and carries the dry signal with it off.</p>
+          <h3>Try it</h3>
+          <p>Send <strong>HISS NOISE WHITE 1</strong> into <strong>IN</strong>. Listen at <strong>OUT</strong>, raise <strong>RES</strong> slightly, and sweep <strong>TIME</strong> to hear how it colors a broadband signal. Add a little <strong>MOD</strong> at a slow <strong>LFO RATE</strong> and let the comb pattern move on its own.</p>
         </div>
         <img class="module-panel" src="assets/screenshots/echo-delay.png"
              width="142" height="421" alt="ECHO DELAY module screenshot">
@@ -265,7 +361,14 @@
       <h2>SHIFT GATE DELAY</h2>
       <div class="module-layout">
         <div>
-          <p>7 HP. Gate delay with adjustable threshold, delay and duration, and a 10 V output.</p>
+          <h3>Overview</h3>
+          <p>SHIFT detects a rising threshold crossing and schedules a new gate. Its delay and output duration are independent, which lets one incoming trigger place an event later in the beat and give it a suitable length.</p>
+          <h3>Controls and connections</h3>
+          <p>Patch the source to <strong>IN</strong> and set <strong>THRESHOLD</strong> below the peak of the trigger. <strong>DELAY</strong> determines how long SHIFT waits after the crossing, and <strong>TIME</strong> determines how long <strong>OUT</strong> stays high. <strong>THRESHOLD</strong> ranges from 0.3 to 5 V. <strong>DELAY</strong> and <strong>TIME</strong> each range from 0.3 ms to 6 seconds. The generated gate reaches +10 V. A longer input gate can initiate the same output pulse as a short trigger.</p>
+          <h3>Try it</h3>
+          <p>Split <strong>STRIDE SEQUENCER GATE</strong> with <strong>BRANCH MULTIPLE</strong>. Send one copy straight to a drum and the other into SHIFT. Patch SHIFT <strong>OUT</strong> to a second percussion voice, then adjust <strong>DELAY</strong> for a two-hit rhythm and <strong>TIME</strong> for a short trigger at the receiving module.</p>
+          <h3>Important notes</h3>
+          <p>The module ignores new rising edges while a delay is pending or an output pulse is active.</p>
         </div>
         <img class="module-panel" src="assets/screenshots/shift-gate-delay.png"
              width="142" height="421" alt="SHIFT GATE DELAY module screenshot">
@@ -275,8 +378,16 @@
       <h2>STRIDE SEQUENCER</h2>
       <div class="module-layout">
         <div>
-          <p>21 HP. Two-channel, eight-step sequencer with parallel and series configurations and a horizontal panel.</p>
-          <p>Repeat advances on the internal clock and returns to the first step at the end of the sequence. In Step mode, after pressing START, each pulse at STEP TRIG advances the sequencer by one step. Single advances on the internal clock and stops at the end of the sequence. Repeat and Single use the internal clock even with a cable connected to STEP TRIG. On earlier panels, this input is labeled TRIG IN. Tempo sets the internal clock rate, which can be modulated at the Tempo CV input. Start/Stop stops a running sequence and starts a stopped sequence from the first step. Changing Repeat/Step/Single or Parallel/Series returns to the first step and resets the clock and end-of-sequence trigger while preserving the running or stopped state. Step values can be adjusted while the sequencer runs. Channel configuration, DELAY and TRIG OUT are described below.</p>
+          <h3>Overview</h3>
+          <p>A step sequencer turns knob settings into timed control voltages. STRIDE can produce two related patterns from the same step clock, or join its two rows into a longer pitch or modulation sequence. Separate gate and end-of-sequence outputs let that pattern articulate and coordinate other voices.</p>
+          <h3>Controls and connections</h3>
+          <p>Set each step in <strong>CH 1</strong> and <strong>CH 2</strong> from 0 to +5 V. In <strong>PARALLEL</strong>, the rows share a length of one to eight steps, set with <strong>STEPS</strong>, and appear at <strong>CV 1</strong> and <strong>CV 2</strong>. In <strong>SERIAL</strong>, <strong>CV 1</strong> plays eight steps of <strong>CH 1</strong> followed by the number of <strong>CH 2</strong> steps selected with <strong>STEPS</strong>. <strong>CV 2</strong> continues through <strong>CH 2</strong>, cycling its eight values as the sequence advances.</p>
+          <p>In <strong>RUN MODE</strong>, choose <strong>REPEAT</strong> for continuous playback or <strong>SINGLE</strong> for one pass. Both use <strong>TEMPO</strong>, which can be modulated via <strong>TEMPO CV</strong>. In <strong>STEP</strong>, press <strong>START</strong> and advance with rising edges at <strong>STEP TRIG</strong>. The <strong>START/STOP</strong> control stops playback or starts from step 1.</p>
+          <p><strong>DELAY</strong> smooths only <strong>CV 1</strong>, useful for sliding between pitch or modulation steps. <strong>GATE TIME</strong> sets the gate duty in the internal-clock modes. In <strong>STEP</strong>, <strong>GATE</strong> stays high for 50 ms after a step starts. A new step restarts that interval. <strong>TRIG OUT</strong> pulses at the end of the sequence.</p>
+          <h3>Try it</h3>
+          <p>Choose <strong>PARALLEL</strong>, <strong>REPEAT</strong>, and four <strong>STEPS</strong>. Patch <strong>CV 1</strong> through <strong>PUNO CHROMA QUANT</strong> to <strong>ORIGIN VCO</strong>. Route <strong>CV 2</strong> to <strong>FORM VCF CV 1</strong> and <strong>GATE</strong> to <strong>CONTOUR ADSR</strong>. Set a pitch in the first row and a separate brightness for each pitch in the second row.</p>
+          <h3>Important notes</h3>
+          <p>Changing the run mode or the row configuration returns the sequence to step 1 while preserving the running or stopped state. <strong>STEP TRIG</strong> advances steps only in <strong>STEP</strong>. Earlier panels label this jack <strong>TRIG IN</strong>.</p>
         </div>
         <img class="module-panel" src="assets/screenshots/stride-sequencer.png"
              width="425" height="497" alt="STRIDE SEQUENCER module screenshot">
@@ -286,7 +397,12 @@
       <h2>TONE EQ</h2>
       <div class="module-layout">
         <div>
-          <p>14 HP. Four-band parametric EQ with two identical outputs, bypass and SIGNAL/CLIP indicators.</p>
+          <h3>Overview</h3>
+          <p>TONE is a four-band parametric equalizer. Each band adjusts a selected part of the spectrum with its own center frequency, boost or cut, and bandwidth. Use a broad setting for tonal balance or a narrow one to target a ringing partial.</p>
+          <h3>Controls and connections</h3>
+          <p>Patch audio to <strong>IN</strong> and take either of the identical <strong>OUT 1</strong> and <strong>OUT 2</strong> signals. In each <strong>BAND</strong>, <strong>FREQ</strong> selects the center within the marked range, <strong>LEVEL</strong> boosts or cuts, and <strong>Q</strong> controls how tightly the change is focused around that center. The four bands cover 20–200 Hz, 100 Hz–1 kHz, 500 Hz–5 kHz, and 2–20 kHz. Each offers ±12 dB of gain and a <strong>Q</strong> range of 0.9–9. Higher <strong>Q</strong> makes a narrower adjustment. Toggle <strong>EQ</strong> and <strong>BYP</strong> to compare, use <strong>SIGNAL</strong> to confirm activity, and watch <strong>CLIP</strong> when boosting or feeding a hot signal.</p>
+          <h3>Try it</h3>
+          <p>Patch a resonant percussion voice into <strong>IN</strong>. Pick a band that covers the ringing frequency and use high <strong>Q</strong> with a small temporary boost. Sweep <strong>FREQ</strong>, then turn <strong>LEVEL</strong> below zero at the point where the ring stands out. Compare with <strong>BYP</strong> at the same downstream gain.</p>
         </div>
         <img class="module-panel" src="assets/screenshots/tone-eq.png"
              width="283" height="481" alt="TONE EQ module screenshot">
@@ -296,34 +412,125 @@
       <h2>MAIN MIXER OUTPUT</h2>
       <div class="module-layout">
         <div>
-          <p>14 HP. Four-channel stereo mixer with pan and fader controls, a reference oscillator, independent master and phones levels, and unnormalled inputs.</p>
+          <h3>Overview</h3>
+          <p>MAIN sums four mono sources into a stereo mix. Each channel has its own level and pan, and the finished mix has separately adjustable master and monitoring outputs. A built-in sine tone provides a reference for tuning or checking the output path.</p>
+          <h3>Controls and connections</h3>
+          <p>Patch sources into <strong>IN 1–4</strong>. Unpatched inputs contribute no signal. Set each <strong>LEVEL</strong> fader for the balance you want. Its LED follows the fader setting. <strong>PAN</strong> uses equal-power panning to keep the combined output power consistent as you move a source from left to right. <strong>OSC FREQ</strong> selects <strong>OFF</strong>, <strong>220</strong>, <strong>440</strong>, or <strong>880</strong> Hz. <strong>OSC LEVEL</strong> blends that centered reference tone into the mix. <strong>MASTER</strong> sets the level at <strong>L / MONO</strong> and <strong>R</strong>. The <strong>PHONES</strong> control sets the level at the separate stereo <strong>PHONES</strong> jack.</p>
+          <h3>Try it</h3>
+          <p>Patch <strong>ORIGIN VCO</strong> into a channel. Select <strong>440</strong>, raise <strong>OSC LEVEL</strong> just enough to hear the reference, then tune the oscillator until the beating slows. Switch <strong>OSC FREQ</strong> to <strong>OFF</strong>, add the other voices, and set the stereo balance using both master outputs.</p>
+          <h3>Important notes</h3>
+          <p>When <strong>R</strong> is unpatched, <strong>L / MONO</strong> carries the average of the left and right master signals. <strong>PHONES</strong> carries left and right on the first two channels of one Rack cable.</p>
         </div>
         <img class="module-panel" src="assets/screenshots/main-mixer-output.png"
              width="283" height="479" alt="MAIN MIXER OUTPUT module screenshot">
       </div>
     </section>
-    <section id="collegamenti-e-comportamento">
-      <h2>Connections and behavior</h2>
-      <ul>
-        <li><strong>HISS</strong>. The two WHITE outputs are identical to each other, as are the two PINK outputs.</li>
-        <li><strong>DRIFT</strong>. When SIGNAL IN is unpatched, the module uses white noise. An external clock at CLOCK IN takes priority for sampling. CLOCK OUT always carries the internal clock. RATE ranges from 0.1 to 50 Hz and LAG ranges from 0 to 5 s.</li>
-        <li><strong>FUSE</strong>. The product X×Y/5 is limited to ±10 V. The inputs are unnormalled.</li>
-        <li><strong>BLEND</strong>. IN 3 and IN 4 are normalled to +10 V and −10 V respectively. There are two copies of the sum and two copies of the inverted sum, with a ±10 V limit.</li>
-        <li><strong>GLIDE</strong>. The exponential time constant ranges from 0.01 to 3 s. LED brightness is proportional to TIME.</li>
-        <li><strong>PASS</strong>. With only CV + patched, the gate opens above 3 V. With only CV − patched, it opens below 1.5 V. With both patched, it opens when CV + &gt; 3 V and CV − ≥ 1.5 V. With neither patched, the gate stays closed.</li>
-        <li><strong>BRANCH</strong>. The six monophonic sections are independent and have no normalled connections between them.</li>
-        <li><strong>SWIRL and ECHO</strong>. The internal triangle LFO ranges from 0.02 to 10 Hz and has opposite ±5 V outputs. External CV replaces the modulation source.</li>
-        <li><strong>ECHO</strong>. The short delay spans 1–7 ms, with feedback from 0 to 0.85 and a fixed 50/50 mix. The delay is too short to produce widely spaced repeats.</li>
-        <li><strong>SHIFT</strong>. Delay and duration range from 0.3 ms to 6 s, the threshold ranges from 0.3 to 5 V and the pulse is 10 V. The module ignores new edges during the delay or pulse.</li>
-        <li><strong>STRIDE</strong>. The two channels each have eight values from 0 to 5 V. PARALLEL runs for 1–8 steps. SERIES runs for 8 + STEPS on CV 1. DELAY smooths only CV 1. TRIG OUT signals the end of the sequence.</li>
-        <li><strong>TONE</strong>. The four parametric bands have ±12 dB of gain adjustment and a Q range of 0.9–9. The frequency ranges are 20–200 / 100–1000 / 500–5000 / 2000–20000 Hz. The two outputs are identical and bypass transitions gradually.</li>
-        <li><strong>MAIN</strong>. The mixer has four unnormalled inputs, equal-power pan and faders with LEDs. The oscillator settings are OFF/220/440/880 Hz. MASTER and PHONES are independent. When MASTER R is unpatched, MASTER L/MONO provides 0.5 × (L + R), the average (attenuated sum) of the two master channels. PHONES carries L and R on the first two channels of the Rack cable.</li>
-      </ul>
-      <p>These notes describe the behavior of the current code. The audio and functionality are unchanged.</p>
+    <section id="pulse-logic">
+      <h2>PULSE LOGIC</h2>
+      <div class="module-layout">
+        <div>
+          <h3>Overview</h3>
+          <p>Logic turns gates into decisions about when events happen. AND detects an overlap, OR forms the union of two gate patterns, and NOT fills the gaps in a single pattern. The sections operate on gate levels, so the lengths of incoming gates shape the resulting rhythm.</p>
+          <h3>Controls and connections</h3>
+          <p>In <strong>AND</strong>, <strong>OUT</strong> is high only during the overlap of high signals at <strong>A</strong> and <strong>B</strong>. In <strong>OR</strong>, <strong>OUT</strong> is high as long as either <strong>A</strong> or <strong>B</strong> is high. Overlapping triggers therefore can merge into one longer gate. <strong>NOT</strong> drives <strong>OUT</strong> high while <strong>IN</strong> is low. Each section works independently.</p>
+          <h3>Try it</h3>
+          <p>Send <strong>PUNO RATIO DIV ÷2</strong> to <strong>A</strong> of <strong>AND</strong> and a phrase enable gate to <strong>B</strong>. Patch <strong>OUT</strong> to a percussion trigger input. Change the length of the enable gate to hear how much of the divided rhythm gets through.</p>
+          <h3>Important notes</h3>
+          <p>An input goes high at +2 V or above and returns low below +0.1 V. Outputs are 0 V or +5 V. An unpatched input is low, so the <strong>NOT</strong> output is high with <strong>IN</strong> unpatched.</p>
+        </div>
+        <img class="module-panel" src="assets/screenshots/pulse-logic.png"
+             width="142" height="430" alt="PUNO PULSE LOGIC module screenshot">
+      </div>
+    </section>
+    <section id="chroma-quant">
+      <h2>CHROMA QUANT</h2>
+      <div class="module-layout">
+        <div>
+          <h3>Overview</h3>
+          <p>A pitch quantizer maps a continuous voltage to discrete notes. CHROMA uses the nearest semitone in the chromatic scale across two independent channels, making random or hand-set CV useful as pitch without requiring each source to land exactly on a note.</p>
+          <h3>Controls and connections</h3>
+          <p>Patch pitch CV into <strong>CV IN</strong> on <strong>A</strong> or <strong>B</strong>, then take the corresponding <strong>CV OUT</strong> to a 1 V/oct pitch input. Both channels use all 12 semitones per octave. A small margin around each decision point helps keep the pitch stable when the input hovers between adjacent notes.</p>
+          <h3>Try it</h3>
+          <p>Clock <strong>DRIFT S&amp;H</strong> with <strong>STRIDE SEQUENCER GATE</strong> and send <strong>S&amp;H OUT</strong> to <strong>CV IN</strong> on <strong>A</strong>. Patch <strong>CV OUT</strong> to <strong>ORIGIN VCO CV 1</strong> with its amount fully clockwise. Use the same sequencer gate to trigger an amplitude envelope so the sampled notes and their articulation share a pulse.</p>
+          <h3>Important notes</h3>
+          <p>Each channel limits its input to ±5 V and reads only the first channel of a polyphonic cable. Unpatching <strong>CV IN</strong> sets the corresponding <strong>CV OUT</strong> to 0 V.</p>
+        </div>
+        <img class="module-panel" src="assets/screenshots/chroma-quant.png"
+             width="142" height="432" alt="PUNO CHROMA QUANT module screenshot">
+      </div>
+    </section>
+    <section id="ratio-div">
+      <h2>RATIO DIV</h2>
+      <div class="module-layout">
+        <div>
+          <h3>Overview</h3>
+          <p>A clock divider derives slower gates from a stream of pulses. The outputs of RATIO are related by successive factors of two, giving several rhythmic layers that share a common timing reference.</p>
+          <h3>Controls and connections</h3>
+          <p>Send a regular pulse to <strong>CLOCK IN</strong>. <strong>÷2</strong>, <strong>÷4</strong>, <strong>÷8</strong>, and <strong>÷16</strong> provide progressively slower gates, with an LED showing when each is high. Their rising edges can advance sequencers or trigger voices. Press <strong>RESET</strong> or send a gate to <strong>RESET IN</strong> to clear the count and set all outputs low together.</p>
+          <h3>Try it</h3>
+          <p>Send a master clock to <strong>CLOCK IN</strong>. Use <strong>÷4</strong> to advance <strong>STRIDE SEQUENCER</strong> in <strong>STEP</strong> mode after pressing <strong>START</strong>, and <strong>÷16</strong> to restart <strong>CYCLE LFO</strong> through <strong>TRIG</strong>. The melody advances more often than the modulation restarts.</p>
+          <h3>Important notes</h3>
+          <p>Reset takes priority over the clock and holds the outputs low as long as it is active. If the clock is still high on release, it needs to go low before the next rising edge counts.</p>
+        </div>
+        <img class="module-panel" src="assets/screenshots/ratio-div.png"
+             width="148" height="456" alt="PUNO RATIO DIV panel with CLOCK IN, RESET IN, a RESET button and four division outputs with LEDs">
+      </div>
+    </section>
+    <section id="route-switch">
+      <h2>ROUTE SWITCH</h2>
+      <div class="module-layout">
+        <div>
+          <h3>Overview</h3>
+          <p>ROUTE is a four-to-one sequential switch. It selects one source at a time, so a simple clock pattern can produce a repeating arrangement of signal sources. A brief crossfade between selections makes it practical to switch audio as well as CV.</p>
+          <h3>Controls and connections</h3>
+          <p>Connect sources to <strong>IN 1–4</strong> and take the current selection from <strong>OUT</strong>. The lit LED identifies the input. <strong>STEP</strong> and a rising edge at <strong>CLOCK</strong> advance in order and wrap after <strong>IN 4</strong>. The <strong>RESET</strong> button or jack returns the selection to <strong>IN 1</strong> and takes priority over stepping. Opening or initializing a patch also starts at <strong>IN 1</strong>.</p>
+          <h3>Try it</h3>
+          <p>Patch four slowly changing CVs into <strong>IN 1–4</strong>, then route <strong>OUT</strong> to a <strong>FORM VCF</strong> cutoff CV input. Clock <strong>ROUTE SWITCH</strong> with <strong>PUNO RATIO DIV ÷4</strong>. Send a phrase-start gate to <strong>RESET</strong> to reintroduce the same modulation source at the start of each phrase.</p>
+          <h3>Important notes</h3>
+          <p>A short crossfade of about 2 ms softens clicks between audio sources. It can also round gate edges. The switch reads only the first channel of a polyphonic cable, and an unpatched input contributes 0 V.</p>
+        </div>
+        <img class="module-panel" src="assets/screenshots/route-switch.png"
+             width="148" height="444" alt="PUNO ROUTE SWITCH module screenshot">
+      </div>
+    </section>
+    <section id="kelvor-dist">
+      <h2>KELVOR DIST</h2>
+      <div class="module-layout">
+        <div>
+          <h3>Overview</h3>
+          <p>KELVOR is a mono saturation effect that uses digital signal processing to reproduce the character of symmetrical germanium-diode clipping. As the input is driven harder, its peaks are compressed and the waveform gains harmonics. A fixed tone stage softens the upper end after clipping.</p>
+          <h3>Controls and connections</h3>
+          <p>Patch audio into <strong>IN</strong> and take the processed signal from <strong>OUT</strong>. <strong>DRIVE</strong> sets the signal level going into the clipping stage, so a hotter input generally saturates at a lower DRIVE setting. <strong>LEVEL</strong> adjusts the output after that stage. Use it to compare changes in tone at a similar listening level while you adjust <strong>DRIVE</strong>.</p>
+          <h3>Try it</h3>
+          <p>Send a triangle from <strong>ORIGIN VCO</strong> into <strong>IN</strong> and listen through <strong>MAIN MIXER OUTPUT</strong>. Raise <strong>DRIVE</strong> from its low setting, then reduce <strong>LEVEL</strong> as needed to match loudness. Listen to when the additional harmonics make the bass stand out against the other voices.</p>
+          <h3>Important notes</h3>
+          <p>KELVOR is mono. It reads the first channel of a polyphonic input.</p>
+        </div>
+        <img class="module-panel" src="assets/screenshots/kelvor-dist.png"
+             width="148" height="450" alt="PUNO KELVOR DIST panel with DRIVE and LEVEL knobs, graduated scales, and IN and OUT jacks">
+      </div>
+    </section>
+    <section id="nastro-tape">
+      <h2>NASTRO TAPE</h2>
+      <div class="module-layout">
+        <div>
+          <h3>Overview</h3>
+          <p>NASTRO TAPE is a 7 HP mono tape delay. Wow and flutter introduce slow and fast variations in the delay time, adding subtle pitch movement to the repeats.</p>
+          <h3>Controls and connections</h3>
+          <p>Patch audio into <strong>IN</strong> and take the mix from <strong>OUT</strong>. <strong>TIME</strong> sets the delay from 50 to 500 ms. <strong>FEEDBACK</strong> sets how much of the delayed signal returns to the recording path. <strong>RECORD LEVEL</strong> sets how much of the incoming signal is recorded. <strong>DRY</strong> sets the direct level and <strong>ECHO</strong> sets the delayed level in the output mix. Each of these four level controls ranges from 0 to 100%.</p>
+          <h3>Try it</h3>
+          <p>Patch a short melody into <strong>IN</strong> and monitor <strong>OUT</strong> through <strong>MAIN MIXER OUTPUT</strong>. Set <strong>TIME</strong> near 250 ms and start with <strong>FEEDBACK</strong> low. Raise it to hear several repeats, then adjust <strong>DRY</strong> and <strong>ECHO</strong> to balance the melody against its repeats. Leave a gap between phrases to hear the pitch movement in the echoes.</p>
+          <h3>Important notes</h3>
+          <p>NASTRO TAPE reads the first channel of a polyphonic input and outputs mono. Wow and flutter taper near the ends of the <strong>TIME</strong> range and are inactive at 50 and 500 ms.</p>
+        </div>
+        <img class="module-panel" src="assets/screenshots/nastro-tape.png"
+             width="148" height="454" alt="NASTRO TAPE panel with five knobs and IN and OUT jacks">
+      </div>
     </section>
   </main>
   <footer>
     <a href="#indice">Back to module index</a>
+    <p>Contact: <a href="mailto:hello@punoelectronicinstruments.com">hello@punoelectronicinstruments.com</a></p>
   </footer>
 </body>
 </html>
